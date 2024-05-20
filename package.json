@@ -1,8 +1,8 @@
 {
-  "name": "nest-fundamentals",
+  "name": "dokan-backend",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "A e-commerce backend service",
+  "author": "Kazi Nihal Towfiq",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

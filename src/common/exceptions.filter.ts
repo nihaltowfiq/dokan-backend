@@ -22,8 +22,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
         ? exception.getResponse()
         : 'Internal server error';
 
-    console.log(errorResponse);
-
     const errorMessages = Array.isArray(errorResponse.message)
       ? errorResponse.message
       : [errorResponse.message || errorResponse];
