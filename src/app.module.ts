@@ -4,7 +4,6 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { UsersModule } from './users/users.module';
 
-// add swagger docs
 @Module({
   controllers: [AppController],
   imports: [
