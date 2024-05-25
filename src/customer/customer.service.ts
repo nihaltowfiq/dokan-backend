@@ -12,7 +12,7 @@ export class CustomerService {
   ) {}
 
   async create(createUserDto: CreateCustomerDto) {
-    const customer_id = GeneratorHelper.generateUniqueId();
+    const customer_id = GeneratorHelper.generateCustomerId();
 
     const newUser = await this.customerModel.create({
       ...createUserDto,
