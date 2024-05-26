@@ -18,18 +18,6 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(
-    email: string,
-    pass: string,
-  ): Promise<Omit<Customer, 'password'>> {
-    const user = await this.customersService.findCustomer(email);
-    if (user && (await PasswordHelper.comparePassword(pass, user.password))) {
-      const { password, ...result } = user;
-      return result;
-    }
-    return null;
-  }
-
   async login(loginCustomerDto: LoginCustomerDto) {
     const { email, password } = loginCustomerDto;
     const user = await this.validateUser(email, password);
@@ -38,7 +26,8 @@ export class AuthService {
     }
     const token = await this.getToken(user);
 
-    return { ...user, token };
+    // remove the password from the response later
+    return { user, token };
   }
 
   async register(createUserDto: CreateCustomerDto) {
@@ -55,12 +44,19 @@ export class AuthService {
     });
     const token = await this.getToken(user);
 
-    delete user['password'];
+    // remove the password from the response later
+    return { user, token };
+  }
 
-    const finalResult = { user, token };
-    console.log({ finalResult });
-
-    return finalResult;
+  async validateUser(
+    email: string,
+    pass: string,
+  ): Promise<Omit<Customer, 'password'>> {
+    const user = await this.customersService.findCustomer(email);
+    if (user && (await PasswordHelper.comparePassword(pass, user.password))) {
+      return user;
+    }
+    return null;
   }
 
   private async ensureUserDoesNotExist(email: string, phone: string) {

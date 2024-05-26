@@ -1,13 +1,5 @@
-import {
-  Controller,
-  Post,
-  Body,
-  ValidationPipe,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
 import { LoginCustomerDto } from './auth.dto';
 import { CreateCustomerDto } from '@/customer/customer.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -29,9 +21,7 @@ export class AuthController {
     return this.authService.login(loginUserDto);
   }
 
-  @UseGuards(AuthGuard)
-  @Post('profile')
-  getProfile(@Request() req) {
-    return req.user;
-  }
+  // forgot-password or reset-password
+
+  // change-password
 }
