@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "811778ee-2e6e-4992-89b2-91cddbc197a4",
+		"_postman_id": "0f2037ed-aca1-4e13-af19-38363c36c3b0",
 		"name": "dokan-backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32574062"
+		"_exporter_id": "33190065"
 	},
 	"item": [
 		{
@@ -128,10 +128,10 @@
 				{
 					"name": "Create Address",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/v1/api/address/all",
+							"raw": "http://localhost:5000/v1/api/address/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -141,7 +141,7 @@
 								"v1",
 								"api",
 								"address",
-								"all"
+								"create"
 							]
 						}
 					},

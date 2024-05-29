@@ -10,6 +10,7 @@ import { CustomerService } from '@/customer/customer.service';
 import { CreateCustomerDto } from '@/customer/customer.dto';
 import { PasswordHelper } from '@/utils/helpers';
 import { Customer } from '@/customer/customer.schema';
+import { CustomerGuardResponse } from './auth.type';
 
 @Injectable()
 export class AuthService {
@@ -21,9 +22,9 @@ export class AuthService {
   async login(loginCustomerDto: LoginCustomerDto) {
     const { email, password } = loginCustomerDto;
     const user = await this.validateUser(email, password);
-    if (!user) {
-      throw new UnauthorizedException();
-    }
+
+    if (!user) throw new UnauthorizedException();
+
     const token = await this.getToken(user);
 
     // remove the password from the response later
@@ -53,6 +54,7 @@ export class AuthService {
     pass: string,
   ): Promise<Omit<Customer, 'password'>> {
     const user = await this.customersService.findCustomer(email);
+
     if (user && (await PasswordHelper.comparePassword(pass, user.password))) {
       return user;
     }
@@ -70,11 +72,13 @@ export class AuthService {
   }
 
   private async getToken(user: Omit<Customer, 'password'>) {
-    const payload = {
+    const payload: CustomerGuardResponse = {
       first_name: user.first_name,
       last_name: user.last_name,
       email: user.email,
       phone: user.phone,
+      customer_id: user.customer_id,
+      id: user._id,
     };
     const token = await this.jwtService.signAsync(payload);
     return token;
