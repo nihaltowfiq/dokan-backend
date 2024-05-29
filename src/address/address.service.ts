@@ -11,9 +11,10 @@ export class AddressService {
   ) {}
 
   async create(customerId: string, createAddressDto: CreateAddressDto) {
-    console.log(customerId);
-
-    const address = await this.addressModel.create(createAddressDto);
+    const address = await this.addressModel.create({
+      ...createAddressDto,
+      customer: customerId,
+    });
     return address;
   }
 }

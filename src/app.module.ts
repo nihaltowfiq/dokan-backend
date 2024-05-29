@@ -8,15 +8,15 @@ import { OrdersModule } from './orders/orders.module';
 import { CartModule } from './cart/cart.module';
 import { CustomerModule } from './customer/customer.module';
 import { AddressModule } from './address/address.module';
-import configuration from './config/configuration';
+import config from './config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [configuration],
+      load: [() => config],
     }),
-    MongooseModule.forRoot(configuration().database.uri),
+    MongooseModule.forRoot(config.database.uri),
     UsersModule,
     AuthModule,
     ProductsModule,
