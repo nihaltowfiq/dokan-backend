@@ -10,10 +10,10 @@ export class Customer extends Document {
   customer_id: string;
 
   @Prop({ required: true, type: String })
-  first_name: number;
+  first_name: string;
 
   @Prop({ required: true, type: String })
-  last_name: number;
+  last_name: string;
 
   @Prop({ required: true, type: String })
   password: string;

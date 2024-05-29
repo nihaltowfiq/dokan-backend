@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   Request,
   UseGuards,
@@ -9,6 +10,7 @@ import {
 import { AddressService } from './address.service';
 import { CreateAddressDto } from './address.dto';
 import { AuthGuard } from '@/auth/auth.guard';
+import { CustomerGuardResponse } from '@/auth/auth.type';
 
 @Controller('address')
 export class AddressController {
@@ -16,15 +18,29 @@ export class AddressController {
 
   @UseGuards(AuthGuard)
   @Post('create')
-  async create(
+  async createAddress(
     @Request() req,
     @Body(ValidationPipe) createAddressDto: CreateAddressDto,
   ) {
     const address = await this.addressService.create(
-      req.user.id,
+      req.customer as CustomerGuardResponse,
       createAddressDto,
     );
     return address;
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('single:id')
+  async getSingleAddress(@Request() req) {
+    const address = await this.addressService.findOne(req.customer);
+    return address;
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('all')
+  async getAllAddress(@Request() req) {
+    const addresses = await this.addressService.findAll(req.customer);
+    return addresses;
   }
 
   // @Put('update:id')
