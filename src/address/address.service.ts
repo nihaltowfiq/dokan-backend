@@ -22,8 +22,10 @@ export class AddressService {
     return address;
   }
 
-  async findOne(customer: CustomerGuardResponse) {
-    const address = this.addressModel.findOne({ _id: customer.id });
+  async findOne(id: string) {
+    const address = this.addressModel
+      .findOne({ _id: id }, { customer: 0 })
+      .exec();
     return address;
   }
 

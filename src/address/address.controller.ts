@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Request,
   UseGuards,
@@ -30,9 +31,9 @@ export class AddressController {
   }
 
   @UseGuards(AuthGuard)
-  @Get('single:id')
-  async getSingleAddress(@Request() req) {
-    const address = await this.addressService.findOne(req.customer);
+  @Get('single/:id')
+  async getSingleAddress(@Param('id') id: string) {
+    const address = await this.addressService.findOne(id);
     return address;
   }
 
