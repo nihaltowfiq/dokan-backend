@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0f2037ed-aca1-4e13-af19-38363c36c3b0",
+		"_postman_id": "20db1e85-53df-4109-b5a0-a0c627a470c6",
 		"name": "dokan-backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33190065"
+		"_exporter_id": "32574062"
 	},
 	"item": [
 		{
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\": \"Nihal\",\r\n    \"last_name\": \"Nihal\",\r\n    \"phone\": \"01790831132\",\r\n    \"email\": \"nihal1@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"first_name\": \"Nihal\",\r\n    \"last_name\": \"Towfiq\",\r\n    \"phone\": \"01790831130\",\r\n    \"email\": \"nihaltowfiq@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -47,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"nihal1@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"email\": \"nihaltowfiq@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -128,8 +128,27 @@
 				{
 					"name": "Create Address",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiTmloYWwiLCJsYXN0X25hbWUiOiJUb3dmaXEiLCJlbWFpbCI6Im5paGFsdG93ZmlxQGdtYWlsLmNvbSIsInBob25lIjoiMDE3OTA4MzExMzAiLCJjdXN0b21lcl9pZCI6ImRrbmx3czIzM2dmbnciLCJpZCI6IjY2NTc1YjRkMmUxMjQwYzBiOWUyMTIyMyIsImlhdCI6MTcxNzAwMTAzNywiZXhwIjoxNzQ4NTM3MDM3fQ.gDJqYSE_wWHIhV8XomgBDzK2HcZaj8qgle6_r0prF-k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"Nihal Towfiq\",\r\n    \"phone_number\": \"01790831130\",\r\n    \"street_address\": \"H-43, R-09, Nikunjo-2\",\r\n    \"area\": \"Khilkhet\",\r\n    \"district\": \"Dhaka\",\r\n    \"notes\": \"Testing\",\r\n    \"type\": \"home\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:5000/v1/api/address/create",
 							"protocol": "http",
@@ -150,10 +169,20 @@
 				{
 					"name": "Get Single Address",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiTmloYWwiLCJsYXN0X25hbWUiOiJUb3dmaXEiLCJlbWFpbCI6Im5paGFsdG93ZmlxQGdtYWlsLmNvbSIsInBob25lIjoiMDE3OTA4MzExMzAiLCJjdXN0b21lcl9pZCI6ImRrbmx3czIzM2dmbnciLCJpZCI6IjY2NTc1YjRkMmUxMjQwYzBiOWUyMTIyMyIsImlhdCI6MTcxNzAwMTAzNywiZXhwIjoxNzQ4NTM3MDM3fQ.gDJqYSE_wWHIhV8XomgBDzK2HcZaj8qgle6_r0prF-k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/v1/api/address/:address_id",
+							"raw": "http://localhost:5000/v1/api/address/single/:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -163,12 +192,13 @@
 								"v1",
 								"api",
 								"address",
-								":address_id"
+								"single",
+								":id"
 							],
 							"variable": [
 								{
-									"key": "address_id",
-									"value": ""
+									"key": "id",
+									"value": "66575bec2e1240c0b9e21226"
 								}
 							]
 						}
@@ -226,6 +256,38 @@
 									"key": "address_id",
 									"value": ""
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiTmloYWwiLCJsYXN0X25hbWUiOiJUb3dmaXEiLCJlbWFpbCI6Im5paGFsdG93ZmlxQGdtYWlsLmNvbSIsInBob25lIjoiMDE3OTA4MzExMzAiLCJjdXN0b21lcl9pZCI6ImRrbmx3czIzM2dmbnciLCJpZCI6IjY2NTc1YjRkMmUxMjQwYzBiOWUyMTIyMyIsImlhdCI6MTcxNzAwMTAzNywiZXhwIjoxNzQ4NTM3MDM3fQ.gDJqYSE_wWHIhV8XomgBDzK2HcZaj8qgle6_r0prF-k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/api/address/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"address",
+								"all"
 							]
 						}
 					},
