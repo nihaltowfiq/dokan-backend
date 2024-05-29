@@ -26,15 +26,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
       ? errorResponse.message
       : [errorResponse.message || errorResponse];
 
-    console.log(
-      errorResponse.error,
-      exception.getResponse(),
-      status,
-      'rrrrrrrr',
-    );
-
-    console.log(errorMessages);
-
     response.status(status).json({
       success: false,
       data: null,
