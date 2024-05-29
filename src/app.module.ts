@@ -7,6 +7,7 @@ import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { CartModule } from './cart/cart.module';
 import { CustomerModule } from './customer/customer.module';
+import { AddressModule } from './address/address.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -22,6 +23,7 @@ import configuration from './config/configuration';
     OrdersModule,
     CartModule,
     CustomerModule,
+    AddressModule,
   ],
 })
 export class AppModule {}

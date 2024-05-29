@@ -3,7 +3,6 @@ import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
 import { CustomerModule } from '@/customer/customer.module';
-import configuration from '@/config/configuration';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
@@ -25,4 +24,3 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   exports: [AuthService],
 })
 export class AuthModule {}
-console.log('jwt', configuration().jwt.secret, process.env.JWT_SECRET);

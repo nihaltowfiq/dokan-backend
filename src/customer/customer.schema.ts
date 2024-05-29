@@ -1,10 +1,11 @@
+import { Address } from '@/address/address.schema';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import mongoose, { Document, HydratedDocument } from 'mongoose';
 
 export type CustomerDocument = HydratedDocument<Customer>;
 
 @Schema({ timestamps: true })
-export class Customer {
+export class Customer extends Document {
   @Prop({ required: true, type: String, unique: true })
   customer_id: string;
 
@@ -24,9 +25,6 @@ export class Customer {
   phone: string;
 
   @Prop({ required: false, type: String, default: null })
-  address: string;
-
-  @Prop({ required: false, type: String, default: null })
   avatar_url: string;
 
   @Prop({ required: false, type: String, default: null })
@@ -34,6 +32,12 @@ export class Customer {
 
   @Prop({ required: false, type: String, default: null })
   gender: string;
+
+  @Prop({
+    default: null,
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
+  })
+  address: Address[];
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);
