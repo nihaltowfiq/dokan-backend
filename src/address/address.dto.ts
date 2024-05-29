@@ -1,3 +1,4 @@
+import { PartialType } from '@nestjs/swagger';
 import { IsNotEmpty, IsPhoneNumber, IsString } from 'class-validator';
 
 export class CreateAddressDto {
@@ -28,3 +29,5 @@ export class CreateAddressDto {
   @IsPhoneNumber('BD')
   phone_number: string;
 }
+
+export class UpdateAddressDto extends PartialType(CreateAddressDto) {}

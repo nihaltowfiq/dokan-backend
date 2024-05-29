@@ -1,17 +1,19 @@
+import { AuthGuard } from '@/auth/auth.guard';
+import { CustomerGuardResponse } from '@/auth/auth.type';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
+  Put,
   Request,
   UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
+import { CreateAddressDto, UpdateAddressDto } from './address.dto';
 import { AddressService } from './address.service';
-import { CreateAddressDto } from './address.dto';
-import { AuthGuard } from '@/auth/auth.guard';
-import { CustomerGuardResponse } from '@/auth/auth.type';
 
 @Controller('address')
 export class AddressController {
@@ -44,9 +46,20 @@ export class AddressController {
     return addresses;
   }
 
-  // @Put('update:id')
-  // async update(@Body(ValidationPipe) createAddressDto: CreateAddressDto) {
-  //   const address = await this.addressService.create(createAddressDto);
-  //   return address;
-  // }
+  @UseGuards(AuthGuard)
+  @Delete('single/:id')
+  async deleteSingleAddress(@Param('id') id: string) {
+    const address = await this.addressService.deleteOne(id);
+    return address;
+  }
+
+  @UseGuards(AuthGuard)
+  @Put('single/:id')
+  async updateSingleAddress(
+    @Param('id') id: string,
+    @Body(ValidationPipe) updateAddressDto: UpdateAddressDto,
+  ) {
+    const address = await this.addressService.updateOne(id, updateAddressDto);
+    return address;
+  }
 }
