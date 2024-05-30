@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/exceptions.filter';
 import { ResponseInterceptor } from './common/response.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import configuration from './config/configuration';
+import config from './config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -11,14 +11,14 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
 
-  const config = new DocumentBuilder()
+  const swagger = new DocumentBuilder()
     .setTitle('Dokan - API')
     .setDescription('Dokan - eCommerce API collection')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, swagger);
   SwaggerModule.setup('api', app, document);
-  await app.listen(configuration().port);
+  await app.listen(config.app.port);
 }
 bootstrap();

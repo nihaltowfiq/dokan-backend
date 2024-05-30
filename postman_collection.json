@@ -1,131 +1,423 @@
 {
-  "info": {
-    "_postman_id": "811778ee-2e6e-4992-89b2-91cddbc197a4",
-    "name": "nestjs-users",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "32574062"
-  },
-  "item": [
-    {
-      "name": "Get All Users",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/v1/api/users?page=1&role=admin",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["v1", "api", "users"],
-          "query": [
-            {
-              "key": "page",
-              "value": "1"
-            },
-            {
-              "key": "role",
-              "value": "admin"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Create a User",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"name\": \"Sparrow\",\r\n    \"email\": \"nihaltowfiq10@gmail.com\",\r\n    \"phone\": \"01790831110\",\r\n    \"role\": \"admin\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5000/v1/api/users/create",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["v1", "api", "users", "create"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Single User",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/v1/api/users/:userId",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["v1", "api", "users", ":userId"],
-          "variable": [
-            {
-              "key": "userId",
-              "value": "59447653"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update User",
-      "request": {
-        "method": "PATCH",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"name\": \"Towfiq\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5000/v1/api/users/update/:userId",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["v1", "api", "users", "update", ":userId"],
-          "variable": [
-            {
-              "key": "userId",
-              "value": "59447653"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Delete User",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/v1/api/users/delete/:userId",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["v1", "api", "users", "delete", ":userId"],
-          "variable": [
-            {
-              "key": "userId",
-              "value": "59447653"
-            }
-          ]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "0f2037ed-aca1-4e13-af19-38363c36c3b0",
+		"name": "dokan-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33190065"
+	},
+	"item": [
+		{
+			"name": "Auth-Management",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Nihal\",\r\n    \"last_name\": \"Nihal\",\r\n    \"phone\": \"01790831130\",\r\n    \"email\": \"nihaltowfiq@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nihaltowfiq@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer-Management",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiTmloYWwiLCJsYXN0X25hbWUiOiJOaWhhbCIsImVtYWlsIjoibmloYWx0b3dmaXFAZ21haWwuY29tIiwicGhvbmUiOiIwMTc5MDgzMTEzMCIsImN1c3RvbWVyX2lkIjoiZGtubHdzd2hiNzlrNSIsImlhdCI6MTcxNzA2MDExNSwiZXhwIjoxNzQ4NTk2MTE1fQ.eQU8Tx4v3PlLCvRMxNSAPLMPkbDfAFd_2e34IPKBDQo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/api/customer/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"customer",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiTmloYWwiLCJsYXN0X25hbWUiOiJOaWhhbCIsImVtYWlsIjoibmloYWx0b3dmaXFAZ21haWwuY29tIiwicGhvbmUiOiIwMTc5MDgzMTEzMCIsImN1c3RvbWVyX2lkIjoiZGtubHdzd2hiNzlrNSIsImlhdCI6MTcxNzA2MDExNSwiZXhwIjoxNzQ4NTk2MTE1fQ.eQU8Tx4v3PlLCvRMxNSAPLMPkbDfAFd_2e34IPKBDQo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"last_name\": \"Towfiq\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/api/customer/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"customer",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address-Management",
+			"item": [
+				{
+					"name": "Create Address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/api/address/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"address",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/api/address/:address_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"address",
+								":address_id"
+							],
+							"variable": [
+								{
+									"key": "address_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/api/address/:address_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"address",
+								":address_id"
+							],
+							"variable": [
+								{
+									"key": "address_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/api/address/:address_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"api",
+								"address",
+								":address_id"
+							],
+							"variable": [
+								{
+									"key": "address_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/api/users?page=1&role=admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "role",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Sparrow\",\r\n    \"email\": \"nihaltowfiq10@gmail.com\",\r\n    \"phone\": \"01790831110\",\r\n    \"role\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/api/users/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"api",
+						"users",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/api/users/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"api",
+						"users",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "59447653"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Towfiq\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/api/users/update/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"api",
+						"users",
+						"update",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "59447653"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/api/users/delete/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"api",
+						"users",
+						"delete",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "59447653"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }

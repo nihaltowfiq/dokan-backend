@@ -1,8 +1,8 @@
 import {
+  CallHandler,
+  ExecutionContext,
   Injectable,
   NestInterceptor,
-  ExecutionContext,
-  CallHandler,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,6 +14,7 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, any> {
       map((data) => ({
         error: [],
         data: data,
+        success: true,
         message: 'Successful',
       })),
     );

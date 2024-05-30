@@ -75,11 +75,7 @@ export class UsersService {
 
   async updateOne(userId: number, createUserDto: UpdateUserDto) {
     const updatedUser = await this.usersModel
-      .findOneAndUpdate(
-        { userId },
-        { $set: createUserDto },
-        { new: true, useFindAndModify: false },
-      )
+      .findOneAndUpdate({ userId }, { $set: createUserDto }, { new: true })
       .exec();
     if (!updatedUser) {
       throw new NotFoundException(`User with ID ${userId} not found`);
