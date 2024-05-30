@@ -63,11 +63,7 @@ export class AddressService {
 
   async updateOne(id: string, updateAddressDto: UpdateAddressDto) {
     const updatedAddress = this.addressModel
-      .findOneAndUpdate(
-        { _id: id },
-        { $set: updateAddressDto },
-        { new: true, useFindAndModify: false },
-      )
+      .findOneAndUpdate({ _id: id }, { $set: updateAddressDto }, { new: true })
       .exec();
 
     if (!updatedAddress) {

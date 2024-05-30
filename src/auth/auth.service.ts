@@ -53,7 +53,7 @@ export class AuthService {
     email: string,
     pass: string,
   ): Promise<Omit<Customer, 'password'>> {
-    const user = await this.customersService.findCustomer(email);
+    const user = await this.customersService.findCustomerByEmailOrPhone(email);
 
     if (user && (await PasswordHelper.comparePassword(pass, user.password))) {
       return user;
@@ -62,7 +62,10 @@ export class AuthService {
   }
 
   private async ensureUserDoesNotExist(email: string, phone: string) {
-    const existingUser = await this.customersService.findCustomer(email, phone);
+    const existingUser = await this.customersService.findCustomerByEmailOrPhone(
+      email,
+      phone,
+    );
 
     if (existingUser) {
       throw new ConflictException(

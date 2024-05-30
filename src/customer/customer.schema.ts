@@ -34,10 +34,10 @@ export class Customer extends Document {
   gender: string;
 
   @Prop({
-    default: null,
     type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
+    default: null,
   })
-  address: Address[];
+  addresses: Address[];
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);
