@@ -35,4 +35,10 @@ export class CustomerController {
       updateCustomerDto,
     );
   }
+
+  // avatar picture upload
+
+  // change email or phone
+
+  // verify email or phone
 }
