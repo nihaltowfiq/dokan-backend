@@ -12,9 +12,12 @@ import {
   UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateAddressDto, UpdateAddressDto } from './address.dto';
 import { AddressService } from './address.service';
 
+@ApiTags('Address')
+@ApiBearerAuth()
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
