@@ -17,7 +17,7 @@ class Child {
 
 const ChildSchema = SchemaFactory.createForClass(Child);
 
-@Schema({ timestamps: true })
+@Schema({ collection: 'categories', timestamps: true })
 export class Category extends Document {
   @Prop({ required: true })
   name: string;
