@@ -4,7 +4,7 @@ import mongoose, { Document, HydratedDocument } from 'mongoose';
 
 export type AddressDocument = HydratedDocument<Address>;
 
-@Schema({ timestamps: true })
+@Schema({ collection: 'addresses', timestamps: true })
 export class Address extends Document {
   @Prop({ required: true, type: String })
   full_name: string;
