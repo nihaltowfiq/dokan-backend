@@ -1,7 +1,9 @@
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { BrandsService } from './brands.service';
 
 @Controller('brands')
 export class BrandsController {
+  constructor(private readonly brandService: BrandsService) {}
   @Post('create') // { admin auth guard }
   createBrand() {
     return null;

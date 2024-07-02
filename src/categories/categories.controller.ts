@@ -1,7 +1,9 @@
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { CategoriesService } from './categories.service';
 
 @Controller('categories')
 export class CategoriesController {
+  constructor(private readonly categoryService: CategoriesService) {}
   @Get('') // { no guard - for customers }
   getCategories() {
     return null;
@@ -22,7 +24,7 @@ export class CategoriesController {
     return null;
   }
 
-  @Get('all') // { no guard - for admin - pagination, sorting, filter }
+  @Get('all') // { auth guard - for admin - pagination, sorting, filter }
   getAllCategories() {
     return null;
   }
