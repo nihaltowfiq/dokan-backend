@@ -1,4 +1,14 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+  ValidationPipe,
+} from '@nestjs/common';
+import { ApiOperation } from '@nestjs/swagger';
+import { GetAllCategoryDto } from './categories.dto';
 import { CategoriesService } from './categories.service';
 
 @Controller('categories')
@@ -25,7 +35,10 @@ export class CategoriesController {
   }
 
   @Get('all') // { auth guard - for admin - pagination, sorting, filter }
-  getAllCategories() {
-    return null;
+  @ApiOperation({ summary: 'Admin - Get all categories with pagination' })
+  getAllCategories(
+    @Query(ValidationPipe) getAllCategoryDto: GetAllCategoryDto,
+  ) {
+    return this.categoryService.findAllWithPagination(getAllCategoryDto);
   }
 }
