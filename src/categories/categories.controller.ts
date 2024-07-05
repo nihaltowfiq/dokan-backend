@@ -7,10 +7,12 @@ import {
   Query,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetAllCategoryDto } from './categories.dto';
 import { CategoriesService } from './categories.service';
 
+@ApiBearerAuth()
+@ApiTags('Product Management')
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoryService: CategoriesService) {}

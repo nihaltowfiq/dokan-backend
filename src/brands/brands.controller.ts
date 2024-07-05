@@ -1,6 +1,9 @@
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { BrandsService } from './brands.service';
 
+@ApiBearerAuth()
+@ApiTags('Product Management')
 @Controller('brands')
 export class BrandsController {
   constructor(private readonly brandService: BrandsService) {}

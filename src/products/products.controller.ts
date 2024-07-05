@@ -1,5 +1,8 @@
 import { Controller } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('Product Management')
 @Controller('products')
 export class ProductsController {
   // add single product { admin auth guard }

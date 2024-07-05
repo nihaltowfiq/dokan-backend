@@ -16,8 +16,8 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateAddressDto, UpdateAddressDto } from './address.dto';
 import { AddressService } from './address.service';
 
-@ApiTags('Address')
 @ApiBearerAuth()
+@ApiTags('Address Management')
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
