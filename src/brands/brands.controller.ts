@@ -1,5 +1,14 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+  ValidationPipe,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { GetAllBrandDto } from './brands.dto';
 import { BrandsService } from './brands.service';
 
 @ApiBearerAuth()
@@ -22,8 +31,9 @@ export class BrandsController {
     return null;
   }
 
-  @Get('all') //{ admin auth guard - pagination, sorting, filter }
-  getAllBrands() {
-    return null;
+  @Get('all') // { auth guard - for admin - pagination, sorting, filter }
+  @ApiOperation({ summary: 'Admin - Get all brands with pagination' })
+  getAllBrands(@Query(ValidationPipe) getAllBrandDto: GetAllBrandDto) {
+    return this.brandService.findAll(getAllBrandDto);
   }
 }
