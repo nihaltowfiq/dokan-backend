@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -8,7 +9,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { GetAllBrandDto } from './brands.dto';
+import { CreateBrandDto, GetAllBrandDto } from './brands.dto';
 import { BrandsService } from './brands.service';
 
 @ApiBearerAuth()
@@ -16,9 +17,11 @@ import { BrandsService } from './brands.service';
 @Controller('brands')
 export class BrandsController {
   constructor(private readonly brandService: BrandsService) {}
+
   @Post('create') // { admin auth guard }
-  createBrand() {
-    return null;
+  @ApiOperation({ summary: 'Admin - Create brand' })
+  createBrand(@Body(ValidationPipe) createBrandDto: CreateBrandDto) {
+    return this.brandService.addOne(createBrandDto);
   }
 
   @Put(':slug') // { admin auth guard }

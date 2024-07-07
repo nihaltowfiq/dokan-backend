@@ -1,6 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsIn, IsNumberString, IsOptional } from 'class-validator';
+import { IsIn, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
+export class CreateBrandDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  name: string;
+
+  @ApiProperty()
+  @IsOptional()
+  logo: string;
+}
 export class GetAllBrandDto {
   @ApiProperty()
   @IsOptional()

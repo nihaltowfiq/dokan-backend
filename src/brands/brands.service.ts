@@ -1,7 +1,8 @@
+import { GeneratorHelper } from '@/utils/helpers';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { GetAllBrandDto } from './brands.dto';
+import { CreateBrandDto, GetAllBrandDto } from './brands.dto';
 import { Brand } from './brands.schema';
 
 @Injectable()
@@ -10,8 +11,8 @@ export class BrandsService {
     @InjectModel(Brand.name) private readonly brandModel: Model<Brand>,
   ) {}
 
-  async findAll(getAllCategoryDto: GetAllBrandDto) {
-    const { page = 1, sort = 'asc', per_page = 3 } = getAllCategoryDto || {};
+  async findAll(getAllBrandDto: GetAllBrandDto) {
+    const { page = 1, sort = 'asc', per_page = 3 } = getAllBrandDto || {};
     const currentPage = +page;
 
     const skip = (currentPage - 1) * per_page;
@@ -37,8 +38,10 @@ export class BrandsService {
     };
   }
 
-  addOne() {
-    return '';
+  async addOne(createBrandDto: CreateBrandDto) {
+    const slug = GeneratorHelper.generateSlug(createBrandDto.name);
+    const newBrand = await this.brandModel.create({ slug, ...createBrandDto });
+    return newBrand;
   }
 
   updateOne() {
