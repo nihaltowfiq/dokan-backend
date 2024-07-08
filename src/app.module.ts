@@ -2,15 +2,15 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AddressModule } from './address/address.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthCustomerModule } from './auth-customer/auth-customer.module';
+import { BrandsModule } from './brands/brands.module';
 import { CartModule } from './cart/cart.module';
+import { CategoriesModule } from './categories/categories.module';
 import config from './config';
 import { CustomerModule } from './customer/customer.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
-import { BrandsModule } from './brands/brands.module';
-import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { CategoriesModule } from './categories/categories.module';
     }),
     MongooseModule.forRoot(config.database.uri),
     UsersModule,
-    AuthModule,
+    AuthCustomerModule,
     ProductsModule,
     OrdersModule,
     CartModule,

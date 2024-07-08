@@ -1,24 +1,24 @@
 import { CreateCustomerDto } from '@/customer/customer.dto';
 import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { LoginCustomerDto } from './auth.dto';
-import { AuthService } from './auth.service';
+import { LoginCustomerDto } from './auth-customer.dto';
+import { AuthCustomerService } from './auth-customer.service';
 
 @ApiBearerAuth()
-@ApiTags('Auth Management')
+@ApiTags('Customer Auth Management')
 @Controller('auth')
-export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+export class AuthCustomerController {
+  constructor(private readonly authCustomerService: AuthCustomerService) {}
 
   @Post('register')
   async register(@Body(ValidationPipe) createUserDto: CreateCustomerDto) {
-    const user = await this.authService.register(createUserDto);
+    const user = await this.authCustomerService.register(createUserDto);
     return user;
   }
 
   @Post('login')
   async login(@Body(ValidationPipe) loginUserDto: LoginCustomerDto) {
-    return this.authService.login(loginUserDto);
+    return this.authCustomerService.login(loginUserDto);
   }
 
   // forgot-password or reset-password

@@ -7,10 +7,10 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { CustomerGuardResponse } from './auth.type';
+import { CustomerGuardResponse } from './auth-customer.type';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthCustomerGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {

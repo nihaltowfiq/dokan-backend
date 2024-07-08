@@ -1,11 +1,11 @@
+import { CustomerGuardResponse } from '@/auth-customer/auth-customer.type';
+import { UpdateUserDto } from '@/users/users.dto';
+import { GeneratorHelper } from '@/utils/helpers';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Customer } from './customer.schema';
 import { CreateCustomerDto } from './customer.dto';
-import { GeneratorHelper } from '@/utils/helpers';
-import { CustomerGuardResponse } from '@/auth/auth.type';
-import { UpdateUserDto } from '@/users/users.dto';
+import { Customer } from './customer.schema';
 
 @Injectable()
 export class CustomerService {
