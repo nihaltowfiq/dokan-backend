@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateAdminDto } from './admin.dto';
+import { CreateAdminDto, GetAllAdminDto } from './admin.dto';
 import { Admin } from './admin.schema';
 
 @Injectable()
@@ -41,5 +41,30 @@ export class AdminService {
     }
 
     return admins?.[0];
+  }
+
+  async findAll(getUsersDto: GetAllAdminDto) {
+    const { page = 1, per_page = 3 } = getUsersDto || {};
+    const currentPage = +page;
+
+    const skip = (currentPage - 1) * per_page;
+
+    const users = await this.adminModel
+      .find({})
+      .skip(skip)
+      .limit(per_page)
+      .exec();
+
+    const totalItems = await this.adminModel.countDocuments();
+    const totalPages = Math.ceil(totalItems / per_page);
+    const nextPage = currentPage < totalPages ? currentPage + 1 : null;
+
+    return {
+      users,
+      totalItems,
+      currentPage,
+      totalPages,
+      nextPage,
+    };
   }
 }

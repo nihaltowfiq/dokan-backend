@@ -2,6 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsNotEmpty,
+  IsNumberString,
+  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -30,4 +32,16 @@ export class CreateAdminDto {
   @MinLength(6)
   @IsNotEmpty()
   password: string;
+}
+
+export class GetAllAdminDto {
+  @ApiProperty()
+  @IsOptional()
+  @IsNumberString()
+  page?: number;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsNumberString()
+  per_page?: number;
 }

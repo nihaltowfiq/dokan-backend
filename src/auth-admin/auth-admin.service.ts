@@ -61,9 +61,9 @@ export class AuthAdminService {
   }
 
   private async ensureUserDoesNotExist(username: string) {
-    const existingAdmin = await this.adminService.findByUsername(username);
+    const isExist = await this.adminService.findByUsername(username);
 
-    if (existingAdmin) {
+    if (isExist) {
       throw new ConflictException('This username is already exists.');
     }
   }
