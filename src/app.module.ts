@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AddressModule } from './address/address.module';
+import { AdminModule } from './admin/admin.module';
+import { AuthAdminModule } from './auth-admin/auth-admin.module';
 import { AuthCustomerModule } from './auth-customer/auth-customer.module';
 import { BrandsModule } from './brands/brands.module';
 import { CartModule } from './cart/cart.module';
@@ -11,7 +13,6 @@ import { CustomerModule } from './customer/customer.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
-import { AuthAdminModule } from './auth-admin/auth-admin.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AuthAdminModule } from './auth-admin/auth-admin.module';
     BrandsModule,
     CategoriesModule,
     AuthAdminModule,
+    AdminModule,
   ],
 })
 export class AppModule {}
