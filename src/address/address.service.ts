@@ -1,4 +1,4 @@
-import { CustomerGuardResponse } from '@/auth/auth.type';
+import { CustomerGuardResponse } from '@/auth-customer/auth-customer.type';
 import {
   BadRequestException,
   Injectable,

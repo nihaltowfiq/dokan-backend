@@ -1,4 +1,4 @@
-import { AuthGuard } from '@/auth/auth.guard';
+import { AuthCustomerGuard } from '@/auth-customer/auth-customer.guard';
 import {
   Body,
   Controller,
@@ -18,13 +18,13 @@ import { CustomerService } from './customer.service';
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Get('profile')
   async getProfile(@Request() req) {
     return await this.customerService.findOne(req.customer);
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Put('profile')
   async updateProfile(
     @Request() req,
