@@ -7,10 +7,10 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { CustomerGuardResponse } from './auth.type';
+import { AdminGuardResponse } from './auth-admin.type';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthAdminGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -20,13 +20,13 @@ export class AuthGuard implements CanActivate {
     if (!token) throw new UnauthorizedException();
 
     try {
-      const payload: CustomerGuardResponse = await this.jwtService.verifyAsync(
+      const payload: AdminGuardResponse = await this.jwtService.verifyAsync(
         token,
         {
           secret: config.auth.secret,
         },
       );
-      request['customer'] = payload;
+      request['user'] = payload;
     } catch (error) {
       throw new UnauthorizedException();
     }

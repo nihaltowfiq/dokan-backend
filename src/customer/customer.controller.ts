@@ -1,3 +1,4 @@
+import { AuthCustomerGuard } from '@/auth-customer/auth-customer.guard';
 import {
   Body,
   Controller,
@@ -8,23 +9,22 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CustomerService } from './customer.service';
 import { UpdateCustomerDto } from './customer.dto';
-import { AuthGuard } from '@/auth/auth.guard';
+import { CustomerService } from './customer.service';
 
-@ApiTags('Customer')
 @ApiBearerAuth()
+@ApiTags('Customer Management')
 @Controller('customer')
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Get('profile')
   async getProfile(@Request() req) {
     return await this.customerService.findOne(req.customer);
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Put('profile')
   async updateProfile(
     @Request() req,

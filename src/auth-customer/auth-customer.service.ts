@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { CreateCustomerDto } from '@/customer/customer.dto';
+import { Customer } from '@/customer/customer.schema';
+import { CustomerService } from '@/customer/customer.service';
+import { PasswordHelper } from '@/utils/helpers';
 import {
   ConflictException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { LoginCustomerDto } from './auth.dto';
-import { CustomerService } from '@/customer/customer.service';
-import { CreateCustomerDto } from '@/customer/customer.dto';
-import { PasswordHelper } from '@/utils/helpers';
-import { Customer } from '@/customer/customer.schema';
-import { CustomerGuardResponse } from './auth.type';
+import { LoginCustomerDto } from './auth-customer.dto';
+import { CustomerGuardResponse } from './auth-customer.type';
 
 @Injectable()
-export class AuthService {
+export class AuthCustomerService {
   constructor(
     private readonly customersService: CustomerService,
     private readonly jwtService: JwtService,

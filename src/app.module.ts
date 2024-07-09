@@ -1,14 +1,18 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
-import { ProductsModule } from './products/products.module';
-import { OrdersModule } from './orders/orders.module';
-import { CartModule } from './cart/cart.module';
-import { CustomerModule } from './customer/customer.module';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AddressModule } from './address/address.module';
+import { AdminModule } from './admin/admin.module';
+import { AuthAdminModule } from './auth-admin/auth-admin.module';
+import { AuthCustomerModule } from './auth-customer/auth-customer.module';
+import { BrandsModule } from './brands/brands.module';
+import { CartModule } from './cart/cart.module';
+import { CategoriesModule } from './categories/categories.module';
 import config from './config';
+import { CustomerModule } from './customer/customer.module';
+import { OrdersModule } from './orders/orders.module';
+import { ProductsModule } from './products/products.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -18,12 +22,16 @@ import config from './config';
     }),
     MongooseModule.forRoot(config.database.uri),
     UsersModule,
-    AuthModule,
+    AuthCustomerModule,
     ProductsModule,
     OrdersModule,
     CartModule,
     CustomerModule,
     AddressModule,
+    BrandsModule,
+    CategoriesModule,
+    AuthAdminModule,
+    AdminModule,
   ],
 })
 export class AppModule {}

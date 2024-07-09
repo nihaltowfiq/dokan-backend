@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/exceptions.filter';
 import { ResponseInterceptor } from './common/response.interceptor';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import config from './config';
 
 async function bootstrap() {
@@ -13,7 +13,7 @@ async function bootstrap() {
 
   const swagger = new DocumentBuilder()
     .setTitle('Dokan - API')
-    .setDescription('Dokan - eCommerce API collection')
+    .setDescription('Dokan - an eCommerce API collection')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

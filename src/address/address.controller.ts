@@ -1,5 +1,5 @@
-import { AuthGuard } from '@/auth/auth.guard';
-import { CustomerGuardResponse } from '@/auth/auth.type';
+import { AuthCustomerGuard } from '@/auth-customer/auth-customer.guard';
+import { CustomerGuardResponse } from '@/auth-customer/auth-customer.type';
 import {
   Body,
   Controller,
@@ -16,13 +16,13 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateAddressDto, UpdateAddressDto } from './address.dto';
 import { AddressService } from './address.service';
 
-@ApiTags('Address')
 @ApiBearerAuth()
+@ApiTags('Address Management')
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Post('create')
   async createAddress(
     @Request() req,
@@ -35,28 +35,28 @@ export class AddressController {
     return address;
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Get('single/:id')
   async getSingleAddress(@Param('id') id: string) {
     const address = await this.addressService.findOne(id);
     return address;
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Get('all')
   async getAllAddress(@Request() req) {
     const addresses = await this.addressService.findAll(req.customer);
     return addresses;
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Delete('single/:id')
   async deleteSingleAddress(@Param('id') id: string) {
     const address = await this.addressService.deleteOne(id);
     return address;
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthCustomerGuard)
   @Put('single/:id')
   async updateSingleAddress(
     @Param('id') id: string,
